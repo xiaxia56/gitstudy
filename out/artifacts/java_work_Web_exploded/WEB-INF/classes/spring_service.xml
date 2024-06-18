@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--    导入service层的包-->
+    <context:component-scan base-package="org.example.service"/>
+
+    <!--    让spring注入book对象-->
+    <bean id="dormitoryServiceImp" class="org.example.service.DormitoryServiceImp">
+        <property name="dormitoryDaomapper" ref="dormitoryDaomapper"/>
+    </bean>
+
+    <!--    注入user对象-->
+    <bean id="userServiceImp" class="org.example.service.UserServiceImp">
+        <property name="userDaoMapper" ref="userDaomapper"/>
+    </bean>
+
+    <!--   数据的事务管理 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <!--   注入数据源，这个是指的是   session.commit(); 事务提交   session.close();事务关闭  -->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+
+</beans>

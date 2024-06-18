@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.dao.DormitoryDaomapper">
+
+    <!--    查询所有-->
+    <select id="selectUser" resultType="org.example.model.Dormitory">
+        select * from test2.dormitory;
+    </select>
+
+    <!--    查询-->
+    <select id="selectUserId" resultType="org.example.model.Dormitory">
+        select * from test2.dormitory where id=#{id};
+    </select>
+
+    <!--    修改名称-->
+    <update id="updateUser" parameterType="org.example.model.Dormitory">
+        update test2.dormitory set name=#{name} where id=#{id};
+    </update>
+
+    <!--    添加数据-->
+    <insert id="insertUser" parameterType="org.example.model.Dormitory">
+        insert into test2.dormitory (id, name) values (#{id},#{name});
+    </insert>
+
+    <!--    删除-->
+    <delete id="deleteUser" parameterType="int">
+        delete from test2.dormitory where id=#{id};
+    </delete>
+
+</mapper>
